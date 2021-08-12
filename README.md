@@ -19,4 +19,7 @@ export QT_QPA_PLATFORM=offscreen
 ```
 
 ## How to run
+This part uses yaml, maybe be migrated to json(not necessary).
+```sh
 ./DNN_multi_class_6.sh config_6.yaml
+```

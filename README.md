@@ -12,9 +12,10 @@ This project uses DNN. To begin with
 git clone git@github.com:Wujinfei/HiggsHadron-DNN.git
 ```
 
-Then it is based on cvmfs,
+Then it is based on lxplus(CERN) or lxslc(IHEP),
 ```sh
 source /cvmfs/sft.cern.ch/lcg/views/LCG_96python3/x86_64-centos7-gcc8-opt/setup.sh
+export QT_QPA_PLATFORM=offscreen
 ```
 
 ## How to run

@@ -89,7 +89,7 @@ def plot_confusion_matrix(cm,
         cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
 
 
-    thresh = cm.max() / 1.2 if normalize else cm.max() / 2
+    thresh = cm.max() / 1.5 if normalize else cm.max() / 2
     for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
         if normalize:
             plt.text(j, i, "{:0.4f}".format(cm[i, j]),
@@ -102,8 +102,8 @@ def plot_confusion_matrix(cm,
 
 
     plt.tight_layout()
-    plt.ylabel('True label',fontsize=24)
-    plt.xlabel('Predicted label\naccuracy={:0.4f}; misclass={:0.4f}'.format(accuracy, misclass),fontsize=24,verticalalignment='baseline')
+    plt.ylabel('True label',fontsize=20)
+    plt.xlabel('Predicted label\naccuracy={:0.4f}; misclass={:0.4f}'.format(accuracy, misclass),fontsize=20)
     plt.savefig("%s/confuse"%output_name+timestr+".pdf")
 
 
@@ -331,15 +331,14 @@ def normalise(x_train, x_test):
 def baseline_model(num_variables,optimizer,nClasses):
     init  = initializers.RandomNormal(mean=0.0, stddev=0.05, seed=None) 
     model = Sequential()
-    model.add(Dense(64,input_dim=num_variables,kernel_initializer=init,activation='relu'))
-    #model.add(Dense(128,input_dim=num_variables,kernel_initializer='glorot_normal',activation='sigmoid'))
-    for index in range(0):
-        model.add(Dense(128,activation='relu'))
-        #model.add(Dense(128,activation='sigmoid'))
+    #model.add(Dense(32,input_dim=num_variables,kernel_initializer=init,activation='relu'))
+    model.add(Dense(64,input_dim=num_variables,kernel_initializer='glorot_normal',activation='sigmoid'))
+    for index in range(1):
+        model.add(Dense(64,activation='sigmoid'))
         #model.add(Dense(32,activation='tanh'))
         model.add(Dropout(0.1))
     for index in range(0):
-        model.add(Dense(64,activation='softplus'))
+        model.add(Dense(16,activation='relu'))
         model.add(Dropout(0.1))
     for index in range(0):
         model.add(Dense(64,activation='sigmoid'))
